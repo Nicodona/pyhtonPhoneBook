@@ -1,3 +1,2 @@
 # mastering python python4dev
-## we have egbe, lionel and me as a contributor
-## we will update our readme with issues later :)
+##This repo is meant to enrich our selves in open source contribution to projects and how to work on a project as a team
