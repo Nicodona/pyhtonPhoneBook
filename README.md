@@ -19,4 +19,4 @@
 11. navigate to your remote forked copy and create a Pull Request (PR)
 
 ## Install are required packages
-pip install -r requirements.txt
+`pip install -r requirements.txt`
