@@ -26,9 +26,10 @@
 - OS Linux other - Follow above for Ubuntu and create an issue with the message `Tool configuration failed for <Your_OS_Name>` if it fails.
 
 ## Server Configuration on windows
-1) file1 type$networking 
-2) file2 AuthMethod
-3) file3 choose windows service
+Open mysqlserver
+1) type$networking ![Type and Networkiing](/img/type&networking.png)
+2) AuthMethod ![Select Auth method](/img/AuthMethod.png)
+3) ![choose windows service](/img/service.png)
 5) create a simple password e.g `myserver` or `testserver` or `phonebookserver` or any other memorable password. We shall update this value in production 
 
 ## Install all requirements
@@ -43,6 +44,7 @@ USER=<DB_USERNAME>
 PASSWORD=<USER_PASSWORD>
 `
 `host` and `user` could be `locahost` and  `root` respectively (in my case ofcourse)
+
 ## Running the App
 - `cd` to `pyhtonphonebook` 
 - OS windows: run `python dbconfig.py`. Don't modify this file. Rather create a descriptive issue if you would want the file to be modified
