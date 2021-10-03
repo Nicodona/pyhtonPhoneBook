@@ -31,12 +31,18 @@
 3) file3 choose windows service
 5) create a simple password e.g `myserver` or `testserver` or `phonebookserver` or any other memorable password. We shall update this value in production 
 
-# Contribution guide
-1. fork this repo
-2. clone a local copy
-3. cd into `pyhtonPhoneBook`
-4. `git remote add upstream https://github.com/Nicodona/pyhtonPhoneBook`
-5. create a branch and checkout- run `git checkout -b <your_branch_name`
+## Install all requirements
+`pip install -r requirements.txt`
+
+## Basic configuration
+- `cd` to `pyhtonphonebook`
+- create a `.env` file with the following
+`
+HOST=<YOUR_HOST_NAME>
+USER=<DB_USERNAME>
+PASSWORD=<USER_PASSWORD>
+`
+`host` and `user` could be `locahost` and  `root` respectively (in my case ofcourse)
 6. start writing your code 😄
 7. .......
 8. when done run: `git add .`
