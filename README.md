@@ -5,6 +5,14 @@
 - when the program is running user should be able to add, delete, edit and read contacts from contact list. 
 - this app is to be built using python using Object Oriented Programming
 
+# Contribution(contrib) guide
+### contrib Part1
+1. fork this repo
+2. clone a local copy using. `git clone <your_forked_repo_url.git`
+3. cd into `pyhtonPhoneBook`
+4. Add upstream to easily grab updates `git remote add upstream https://github.com/Nicodona/pyhtonPhoneBook`
+5. create a branch and checkout- run `git checkout -b <your_branch_name`
+
 # Tools
 - OS windows: Download [MySQL Installer](https://dev.mysql.com/downloads/installer/)
     - Open installer and download the following or manually by clicking on each tool below
