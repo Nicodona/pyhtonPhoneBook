@@ -43,6 +43,10 @@ USER=<DB_USERNAME>
 PASSWORD=<USER_PASSWORD>
 `
 `host` and `user` could be `locahost` and  `root` respectively (in my case ofcourse)
+## Running the App
+- `cd` to `pyhtonphonebook` 
+- OS windows: run `python dbconfig.py`. Don't modify this file. Rather create a descriptive issue if you would want the file to be modified
+- OS Linux - ubuntu or other Linux distri: run `python3 dbconfig.py`
 6. start writing your code 😄
 7. .......
 8. when done run: `git add .`
