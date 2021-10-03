@@ -52,9 +52,8 @@ PASSWORD=<USER_PASSWORD>
 
 ### contrib Part2
 Reminder: `pyhtonphonebook/delta/matrix.py` is the only file to edit here.
-6. start writing your code 😄
-7. .......
-8. when done run: `git add .`
-9. `git commit -m "your commit message"`
-10. `git push origin <your_branch_name`
-11. navigate to your remote forked copy and create a Pull Request (PR)
+1. start writing your code 😄
+2. when done run: `git add .`
+3. `git commit -m "your commit message"`
+4. `git push origin <your_branch_name`
+5. navigate to your remote forked copy and create a Pull Request (PR)
