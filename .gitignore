@@ -1,3 +1,4 @@
 .env
 /__pycache__
+/delta/__pycache__
 /.vscode
