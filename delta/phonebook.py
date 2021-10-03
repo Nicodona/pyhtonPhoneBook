@@ -46,4 +46,4 @@ class Address:
 
 class Group:
 	def __init__(self, ):
-		print("something")
+		print("...init group") 
