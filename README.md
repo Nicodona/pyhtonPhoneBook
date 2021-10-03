@@ -25,6 +25,11 @@
     - Install [MySQL Workbench - 8.0.26](https://dev.mysql.com/downloads/workbench/) 
 - OS Linux other - Follow above for Ubuntu and create an issue with the message `Tool configuration failed for <Your_OS_Name>` if it fails.
 
+## Server Configuration on windows
+1) file1 type$networking 
+2) file2 AuthMethod
+3) file3 choose windows service
+5) create a simple password e.g `myserver` or `testserver` or `phonebookserver` or any other memorable password. We shall update this value in production 
 
 # Contribution guide
 1. fork this repo
