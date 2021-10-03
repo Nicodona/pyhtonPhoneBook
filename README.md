@@ -47,6 +47,7 @@ PASSWORD=<USER_PASSWORD>
 - `cd` to `pyhtonphonebook` 
 - OS windows: run `python dbconfig.py`. Don't modify this file. Rather create a descriptive issue if you would want the file to be modified
 - OS Linux - ubuntu or other Linux distri: run `python3 dbconfig.py`
+
 ### contrib Part2
 Reminder: `pyhtonphonebook/delta/matrix.py` is the only file to edit here.
 6. start writing your code 😄
@@ -55,16 +56,3 @@ Reminder: `pyhtonphonebook/delta/matrix.py` is the only file to edit here.
 9. `git commit -m "your commit message"`
 10. `git push origin <your_branch_name`
 11. navigate to your remote forked copy and create a Pull Request (PR)
-
-## Install are required packages
-`pip install -r requirements.txt`
-
-# Tools
-- OS windows: Download [MySQL Installer](https://dev.mysql.com/downloads/installer/)
-    - Open installer and download the following or manually by clicking on each tool below
-    - [Connector/Python - 8.0.26](https://dev.mysql.com/downloads/connector/python/) . Make sure to select OS
-    - [MySQL server - 8.0.26](https://dev.mysql.com/downloads/mysql/)
-    - [MySQL Workbench - 8.0.26](https://dev.mysql.com/downloads/workbench/) 
-- OS Linux ubuntu - [Steps](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04)
-    - [Connector/Python - 8.0.26](https://dev.mysql.com/downloads/connector/python/). Make sure to select OS
-    - Install [MySQL Workbench - 8.0.26](https://dev.mysql.com/downloads/workbench/) 
