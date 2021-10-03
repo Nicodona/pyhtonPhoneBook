@@ -5,7 +5,7 @@
 ### when the program is running user should be able to add, delete, edit and read contacts from contact list. 
 ### this app is to be built using python using Object Oriented Programming
 
-#Contribution guide
+# Contribution guide
 1. fork this repo
 2. clone a local copy
 3. cd into `pyhtonPhoneBook`
@@ -20,3 +20,13 @@
 
 ## Install are required packages
 `pip install -r requirements.txt`
+
+# Tools
+- OS windows: Download [MySQL Installer](https://dev.mysql.com/downloads/installer/)
+    - Open installer and download the following or manually by clicking on each tool below
+    - [Connector/Python - 8.0.26](https://dev.mysql.com/downloads/connector/python/) . Make sure to select OS
+    - [MySQL server - 8.0.26](https://dev.mysql.com/downloads/mysql/)
+    - [MySQL Workbench - 8.0.26](https://dev.mysql.com/downloads/workbench/) 
+- OS Linux ubuntu - [Steps](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04)
+    - [Connector/Python - 8.0.26](https://dev.mysql.com/downloads/connector/python/). Make sure to select OS
+    - Install [MySQL Workbench - 8.0.26](https://dev.mysql.com/downloads/workbench/) 
