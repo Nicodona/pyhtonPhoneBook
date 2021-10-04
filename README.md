@@ -46,12 +46,12 @@ PASSWORD=<USER_PASSWORD>
 `host` and `user` could be `locahost` and  `root` respectively (in my case ofcourse)
 
 ## Running the App
-- `cd` to `pyhtonphonebook` 
+- `cd` to `pyhtonphonebook/config` 
 - OS windows: run `python dbconfig.py`. Don't modify this file. Rather create a descriptive issue if you would want the file to be modified
 - OS Linux - ubuntu or other Linux distri: run `python3 dbconfig.py`
 
 ### contrib Part2
-Reminder: `pyhtonphonebook/delta/matrix.py` is the only file to edit here.
+Reminder: `pyhtonphonebook/phonebook.py` is the only file to edit here.
 1. start writing your code 😄
 2. when done run: `git add .`
 3. `git commit -m "your commit message"`
