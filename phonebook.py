@@ -59,3 +59,9 @@ class Group:
     def get_groups(self):  # return all groups
         pass
 
+
+def close_connection():
+    cnx.commit()
+    cursor.close()
+    cnx.close()
+    pass
