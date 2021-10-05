@@ -27,7 +27,7 @@
 
 ## Server Configuration on windows
 Open mysqlserver
-1) type$networking ![Type and Networkiing](/img/type&networking.png)
+1) type$networking ![Type and Networkiing](https://github.com/spykelion/pyhtonPhoneBook/blob/master/img/AuthMethod.PNG)
 2) AuthMethod ![Select Auth method](/img/AuthMethod.png)
 3) ![choose windows service](/img/service.png)
 5) create a simple password e.g `myserver` or `testserver` or `phonebookserver` or any other memorable password. We shall update this value in production 
