@@ -27,9 +27,9 @@
 
 ## Server Configuration on windows
 Open mysqlserver
-1) type$networking ![Type and Networkiing](https://github.com/spykelion/pyhtonPhoneBook/blob/master/img/AuthMethod.PNG)
-2) AuthMethod ![Select Auth method](/img/AuthMethod.png)
-3) ![choose windows service](/img/service.png)
+1) type$networking ![Type and Networkiing](https://github.com/spykelion/pyhtonPhoneBook/blob/master/img/type%26networking.PNG)
+2) AuthMethod ![Select Auth method](https://github.com/spykelion/pyhtonPhoneBook/blob/master/img/AuthMethod.PNG)
+3) ![choose windows service](https://github.com/spykelion/pyhtonPhoneBook/blob/master/img/service.PNG)
 5) create a simple password e.g `myserver` or `testserver` or `phonebookserver` or any other memorable password. We shall update this value in production 
 
 ## Install all requirements
