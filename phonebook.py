@@ -1,7 +1,12 @@
 from __future__ import print_function
 import config.connect
 
+cnx = ''
+cursor = ''
+
+def connect_now():
 try:
+        global cnx, cursor
     cnx = config.connect.connect(DB_NAME='phonebook')
     cursor = cnx.cursor()
 except AttributeError as err:
