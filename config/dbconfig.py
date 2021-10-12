@@ -9,12 +9,12 @@ DB_NAME = 'phonebook'
 
 TABLES = {}
 
-TABLES['group'] = (
-    "CREATE TABLE `group` ("
+TABLES['contact_group'] = (
+    "CREATE TABLE `contact_group` ("
     "  `groupID` int(11) NOT NULL AUTO_INCREMENT,"
     "  `name` varchar(20),"
     "  `description` varchar(20),"
-    "  PRIMARY KEY (`categoryID`),"
+    "  PRIMARY KEY (`groupID`)"
     ") ENGINE=InnoDB")
 
 TABLES['contact'] = (
@@ -22,10 +22,11 @@ TABLES['contact'] = (
     "  `contactID` int(11) NOT NULL AUTO_INCREMENT,"
     "  `name` varchar(20),"
     "  `tel` varchar(20),"
-    "   `groupID` int(11)"
+    "  `date_created` date,"
+    "   `groupID` int(11) NOT NULL,"
+    "  PRIMARY KEY (`contactID`),"
     "  CONSTRAINT `contact_ibfk_1` FOREIGN KEY (`groupID`) "
     "     REFERENCES `group` (`groupID`)"
-    "  PRIMARY KEY (`contactID`)"
     ") ENGINE=InnoDB")
 
 TABLES['address'] = (
@@ -37,7 +38,7 @@ TABLES['address'] = (
     "  `contactID` int(11) NOT NULL,"
     "  PRIMARY KEY (`addressID`),"
     "  CONSTRAINT `address_ibfk_1` FOREIGN KEY (`contactID`) "
-    "     REFERENCES `contact` (`contactID`) ON DELETE CASCADE"
+    "     REFERENCES `contact` (`contactID`)"
     ") ENGINE=InnoDB")
 
 

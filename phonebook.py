@@ -1,29 +1,24 @@
 from __future__ import print_function
+
+import datetime
 import config.connect
 
-try:
-    cnx = config.connect.connect(DB_NAME='phonebook')
-    cursor = cnx.cursor()
-except AttributeError as err:
-    print(err)
+cnx = ''
+cursor = ''
+
+
+def open_connection():
+    try:
+        global cnx, cursor
+        cnx = config.connect.connect(DB_NAME='phonebook')
+        cursor = cnx.cursor()
+    except AttributeError as err:
+        print(err)
 
 
 class PhoneBook:
-    def __init__(self,):
-        # other init setup. create Address object
-        print("phonebook initialized")
-
-    # create a phonebook
-    def create(self):
-        pass
-
-    def edit(self):
-        pass
-
-    def update(self):
-        pass
-
-    def delete(self):
+    def __init__(self) -> None:
+        print("Phonebook initialized... Choose operation")
         pass
 
     def menu(self):
@@ -36,75 +31,264 @@ class PhoneBook:
         print("\tYou can now perform the following operations on this phonebook\n")
         print("1. Add a new contact")
         print("2. Remove an existing contact")
-        print("3. Delete all contacts")
+        print("3. update contact")
         print("4. Search for a contact")
         print("5. Display all contacts")
         print("6. Exit phonebook")
-        choice = int(input("Please enter a choice"))
-
+        try:
+            choice = int(input("Please enter a choice [Select a number]"))
+        except TypeError as e:
+            print(e)
+    
         return choice
+
+    def create(self):
+        # name, tel , datecreated, groupID
+        name = str(input("Enter Name: "))
+        tel = str(input("Enter Tel: "))
+        # name = str(input("Enter Name: "))
+        try:
+            group = int(
+                input("Enter Group [Family(3), Friends(4), business(5)]: "))
+        except TypeError as e:
+            print(e)
+        contact = Contact()
+        contact.create(name, tel, group)
+        print("Contact created")
+        pass
+
+    def update(self)->None:
+         # name, tel , datecreated, groupID
+        name = str(input("Enter Name: "))
+        tel = str(input("Enter Tel: "))
+        # name = str(input("Enter Name: "))
+        try:
+            group = int(
+                input("Enter Group [Family(3), Friends(4), business(5)]: "))
+        except TypeError as e:
+            print(e)
+        contact = Contact()
+        contact.update(name, tel, group)
+        print("Contact updated")
+        pass
+
+    def delete(self)->None:
+         # name, tel , datecreated, groupID
+        name = str(input("Enter Name: "))
+        contact = Contact()
+        contact.delete(name)
+        print("Contact updated")
+        pass
+
+    def get_one(self)->None:
+         # name, tel , datecreated, groupID
+        name = str(input("Enter Name: "))
+        contact = Contact()
+        contact.get_one(name)
+        print("Gotten one contact")
+        pass
+
+    def get_all(self)->None:
+        contact = Contact()
+        contact.get_all()
+        print("Gotten all contact")
+        pass
+
 
 
 class Contact:
     def __init__(self) -> None:
-        print("Creating contact..")
+        print("Processing contact....")
         pass
 
     def create(self, name, tel, groupID):
+        open_connection()
         add_contact = ("INSERT INTO contact "
-                       "(name, tel, groupID) "
-                       "VALUES (%s, %s, %s)")
-        data_contact = {
-            'name': name,
-            'tel': tel,
-            'groupID': groupID
-        }
+                       "(name, tel, date_created, groupID) "
+                       "VALUES (%s, %s,%s, %s)")
+        data_contact = (name, tel, datetime.datetime.now+1, groupID)
         cursor.execute(add_contact, data_contact)
 
         # Make sure data is committed to the database
+        cnx.commit()
         close_connection()
         print("Contact successfuly created")
         pass
 
+    def delete(self, name: str = ""):
+        open_connection()
+        query = ("DELETE FROM contact "
+                 "WHERE name=%s; ")
+        cursor.execute(query, (name, ))
+        cnx.commit()
+        print("DELETED")
+        close_connection()
+        pass
+
+    def update(self, id: int = 0, name: str = "", tel: str = "", groupID: int = 0):
+        open_connection()
+        query = ("UPDATE contact"
+                 "SET name=%s, "
+                 "SET tel=%s, "
+                 "SET groupID=%s "
+                 "WHERE id=%s ")
+        cursor.execute(query, (name, tel, groupID, id))
+        cnx.commit()
+        print("Succesfully updated groudid", id)
+        close_connection()
+        pass
+
+    def get_one(self, name=""):
+        open_connection()
+        query = ("SELECT * from contact "
+                 "WHERE name=%s ")
+        cursor.execute(query, (name,))
+        r = cursor.fetchone()
+        print(r)
+        close_connection()
+        pass
+
+    def get_all(self):  # return all groups
+        open_connection()
+        query = "SELECT * FROM contact"
+        cursor.execute(query)
+        result = cursor.fetchall()
+        for r in result:
+            print(r)
+        close_connection()
+        pass
+
 
 class Address:
-    def __init__(self, email, country, region, contactID) -> None:
+    def __init__(self) -> None:
+        print("Processing group....")
+        pass
+
+    def create(self, email="", country="", region="", contactID=""):
+        open_connection()
+        add_group = ("INSERT INTO address "
+                     "(email, country, region, contactID) "
+                     "VALUES(%s, %s)")
+        # Insert address
+        d = (email, country, region, contactID)
+        cursor.execute(add_group, d)
+        cnx.commit()
+        # Make sure data is committed to the database and close conn
+        close_connection()
+        print("Group successfuly created")
+        return "created"
+
+    def delete(self, email=""):
+        open_connection()
+        query = ("DELETE FROM address "
+                 "WHERE email=%s; ")
+        cursor.execute(query, (email, ))
+        cnx.commit()
+        print("DELETED")
+        close_connection()
+        pass
+
+    def update(self, id: int = 0, email: str = "", country="", region="", contactID: int = 0):
+        open_connection()
+        query = ("UPDATE adress "
+                 "SET email=%s ,"
+                 "SET country=%s ,"
+                 "SET region=%s ,"
+                 "SET contactID=%s "
+                 "WHERE groupID=%s ")
+        cursor.execute(query, (email, country, region, contactID, id))
+        cnx.commit()
+        print("Succesfully updated groudid", id)
+        close_connection()
+        pass
+
+    def get_one(self, name=""):
+        open_connection()
+        query = ("SELECT * FROM address "
+                 "WHERE name=%s ")
+        cursor.execute(query, (name,))
+        r = cursor.fetchone()
+        print(r)
+        close_connection()
+        pass
+
+    def get_all(self):  # return all addresses
+        open_connection()
+        query = "SELECT * FROM address"
+        cursor.execute(query)
+        result = cursor.fetchall()
+        for r in result:
+            print(r)
+        close_connection()
         pass
 
 
 class Group:
     def __init__(self) -> None:
-        print("Creating a group....")
+        print("Processing group....")
         pass
 
     def create(self, name, desc):
-        add_group = ("INSERT INTO group "
+        open_connection()
+        add_group = ("INSERT INTO contact_group "
                      "(name, description) "
-                     "VALUES (%s, %s)")
+                     "VALUES(%s, %s)")
         # Insert group information
         data_group = {
             'name': name,
             'description': desc
         }
-        cursor.execute(add_group, data_group)
-
-        # Make sure data is committed to the database
+        d = (name, desc)
+        cursor.execute(add_group, d)
+        cnx.commit()
+        # Make sure data is committed to the database and close conn
         close_connection()
         print("Group successfuly created")
+        return "created"
+
+    def delete(self, name=""):
+        open_connection()
+        query = ("DELETE FROM contact_group "
+                 "WHERE name=%s; ")
+        cursor.execute(query, (name, ))
+        cnx.commit()
+        print("DELETED")
+        close_connection()
         pass
 
-    def delete(self, id):
+    def update(self, id: int = 0, name: str = ""):
+        open_connection()
+        query = ("UPDATE contact_group "
+                 "SET name=%s "
+                 "WHERE groupID=%s ")
+        cursor.execute(query, (name, id))
+        cnx.commit()
+        print("Succesfully updated groudid", id)
+        close_connection()
         pass
 
-    def update(self, id):
+    def get_one(self, name=""):
+        open_connection()
+        query = ("SELECT name, description from contact_group "
+                 "WHERE name=%s ")
+        cursor.execute(query, (name,))
+        r = cursor.fetchone()
+        print(r)
+        close_connection()
         pass
 
-    def get_groups(self):  # return all groups
+    def get_all(self):  # return all groups
+        open_connection()
+        query = "SELECT * FROM contact_group"
+        cursor.execute(query)
+        result = cursor.fetchall()
+        for r in result:
+            print(r)
+        close_connection()
         pass
 
 
 def close_connection():
-    cnx.commit()
     cursor.close()
     cnx.close()
     pass
