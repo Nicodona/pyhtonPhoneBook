@@ -102,7 +102,14 @@ class Group:
     def delete(self, id):
         pass
 
-    def update(self, id):
+    def update(self,id: int=0, name=""):
+        open_connection()
+        query = ("UPDATE contact_group "
+                "SET name=%s "
+                "WHERE groupID=%s ")
+        cursor.execute(query, (name, id))
+        print("Succesfully updated groudid", id)
+        close_connection()
         pass
 
     def get_one(self, name=""):
