@@ -17,23 +17,9 @@ def open_connection():
 
 
 class PhoneBook:
-    def __init__(self,):
-        # other init setup. create Address object
-        print("phonebook initialized")
-
-    # create a phonebook
-    def create(self):
+    def __init__(self) -> None:
+        print("Phonebook initialized... Choose operation")
         pass
-
-    def edit(self):
-        pass
-
-    def update(self):
-        pass
-
-    def delete(self):
-        pass
-
     def menu(self):
         # We created this simple menu function for
         # code reusability & also for an interactive console
@@ -97,7 +83,7 @@ class Contact:
 
     def get_one(self, name=""):
         open_connection()
-        query = ("SELECT name, description from contact_group "
+        query = ("SELECT * from contact "
                 "WHERE name=%s ")
         cursor.execute(query, (name,))
         r = cursor.fetchone()
@@ -105,9 +91,9 @@ class Contact:
         close_connection()
         pass
 
-    def get_groups(self):  # return all groups
+    def get_all(self):  # return all groups
         open_connection()
-        query = "SELECT * FROM contact_group"
+        query = "SELECT * FROM contact"
         cursor.execute(query)
         result = cursor.fetchall()
         for r in result:
@@ -117,9 +103,68 @@ class Contact:
       
 
 class Address:
-    def __init__(self, email, country, region, contactID) -> None:
+    def __init__(self) -> None:
+        print("Processing group....")
         pass
 
+    def create(self, email="", country="", region="",contactID=""):
+        open_connection()
+        add_group = ("INSERT INTO address "
+                     "(email, country, region, contactID) "
+                     "VALUES(%s, %s)")
+        # Insert address
+        d = (email, country, region, contactID)
+        cursor.execute(add_group, d)
+        cnx.commit()
+        # Make sure data is committed to the database and close conn
+        close_connection()
+        print("Group successfuly created")
+        return "created"
+
+    def delete(self, email=""):
+        open_connection()
+        query = ("DELETE FROM address "
+                "WHERE email=%s; ")
+        cursor.execute(query, (email, ))
+        cnx.commit()
+        print("DELETED")
+        close_connection()
+        pass
+
+    def update(self,id: int=0, email:str="", country="", region="", contactID:int=0):
+        open_connection()
+        query = ("UPDATE adress "
+                "SET email=%s ,"
+                "SET country=%s ,"
+                "SET region=%s ,"
+                "SET contactID=%s "
+                "WHERE groupID=%s ")
+        cursor.execute(query, (email,country,region,contactID, id))
+        cnx.commit()
+        print("Succesfully updated groudid", id)
+        close_connection()
+        pass
+
+    def get_one(self, name=""):
+        open_connection()
+        query = ("SELECT * FROM address "
+                "WHERE name=%s ")
+        cursor.execute(query, (name,))
+        r = cursor.fetchone()
+        print(r)
+        close_connection()
+        pass
+
+    def get_all(self):  # return all addresses
+        open_connection()
+        query = "SELECT * FROM address"
+        cursor.execute(query)
+        result = cursor.fetchall()
+        for r in result:
+            print(r)
+        close_connection()
+        pass
+        
 
 class Group:
     def __init__(self) -> None:
@@ -175,7 +220,7 @@ class Group:
         close_connection()
         pass
 
-    def get_groups(self):  # return all groups
+    def get_all(self):  # return all groups
         open_connection()
         query = "SELECT * FROM contact_group"
         cursor.execute(query)
