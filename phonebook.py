@@ -105,6 +105,16 @@ class Group:
     def update(self, id):
         pass
 
+    def get_one(self, name=""):
+        open_connection()
+        query = ("SELECT name, description from contact_group "
+                "WHERE name=%s ")
+        cursor.execute(query, (name,))
+        r = cursor.fetchone()
+        print(r)
+        close_connection()
+        pass
+
     def get_groups(self):  # return all groups
         pass
 
