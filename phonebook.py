@@ -83,17 +83,18 @@ class Group:
         pass
 
     def create(self, name, desc):
-        add_group = ("INSERT INTO group "
+        open_connection()
+        add_group = ("INSERT INTO contact_group "
                      "(name, description) "
-                     "VALUES (%s, %s)")
+                     "VALUES(%s, %s)")
         # Insert group information
         data_group = {
             'name': name,
             'description': desc
         }
-        cursor.execute(add_group, data_group)
-
-        # Make sure data is committed to the database
+        d = (name, desc)
+        cursor.execute(add_group, d)
+        cnx.commit()
         close_connection()
         print("Group successfuly created")
         pass
