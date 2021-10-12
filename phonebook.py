@@ -55,25 +55,66 @@ class PhoneBook:
 
 class Contact:
     def __init__(self) -> None:
-        print("Creating contact..")
+        print("Processing contact....")
         pass
 
     def create(self, name, tel, groupID):
+        open_connection()
         add_contact = ("INSERT INTO contact "
                        "(name, tel, groupID) "
                        "VALUES (%s, %s, %s)")
-        data_contact = {
-            'name': name,
-            'tel': tel,
-            'groupID': groupID
-        }
+        data_contact = (name, tel, groupID)
         cursor.execute(add_contact, data_contact)
 
         # Make sure data is committed to the database
+        cnx.commit()
         close_connection()
         print("Contact successfuly created")
         pass
+    
+    def delete(self, name:str=""):
+        open_connection()
+        query = ("DELETE FROM contact "
+                "WHERE name=%s; ")
+        cursor.execute(query, (name, ))
+        cnx.commit()
+        print("DELETED")
+        close_connection()
+        pass
 
+    def update(self,id: int=0, name:str="", tel:str="", groupID:int=0):
+        open_connection()
+        query = ("UPDATE contact"
+                "SET name=%s, "
+                "SET tel=%s, "
+                "SET groupID=%s "
+                "WHERE id=%s ")
+        cursor.execute(query, (name, tel, groupID, id))
+        cnx.commit()
+        print("Succesfully updated groudid", id)
+        close_connection()
+        pass
+
+    def get_one(self, name=""):
+        open_connection()
+        query = ("SELECT name, description from contact_group "
+                "WHERE name=%s ")
+        cursor.execute(query, (name,))
+        r = cursor.fetchone()
+        print(r)
+        close_connection()
+        pass
+
+    def get_groups(self):  # return all groups
+        open_connection()
+        query = "SELECT * FROM contact_group"
+        cursor.execute(query)
+        result = cursor.fetchall()
+        for r in result:
+            print(r)
+        close_connection()
+        pass
+      
 
 class Address:
     def __init__(self, email, country, region, contactID) -> None:
