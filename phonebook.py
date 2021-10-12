@@ -116,7 +116,16 @@ class Group:
         pass
 
     def get_groups(self):  # return all groups
+        open_connection()
+        query = "SELECT * FROM contact_group"
+        cursor.execute(query)
+        result = cursor.fetchall()
+        for r in result:
+            print(r)
+        close_connection()
         pass
+        
+        
 
 
 def close_connection():
