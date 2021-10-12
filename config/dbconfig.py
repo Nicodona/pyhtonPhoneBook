@@ -9,8 +9,8 @@ DB_NAME = 'phonebook'
 
 TABLES = {}
 
-TABLES['group'] = (
-    "CREATE TABLE `group` ("
+TABLES['contact_group'] = (
+    "CREATE TABLE `contact_group` ("
     "  `groupID` int(11) NOT NULL AUTO_INCREMENT,"
     "  `name` varchar(20),"
     "  `description` varchar(20),"
