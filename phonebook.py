@@ -1,16 +1,19 @@
 from __future__ import print_function
+
+from mysql.connector.utils import NUMERIC_TYPES
 import config.connect
 
 cnx = ''
 cursor = ''
 
-def connect_now():
-try:
+
+def open_connection():
+    try:
         global cnx, cursor
-    cnx = config.connect.connect(DB_NAME='phonebook')
-    cursor = cnx.cursor()
-except AttributeError as err:
-    print(err)
+        cnx = config.connect.connect(DB_NAME='phonebook')
+        cursor = cnx.cursor()
+    except AttributeError as err:
+        print(err)
 
 
 class PhoneBook:
@@ -79,7 +82,7 @@ class Address:
 
 class Group:
     def __init__(self) -> None:
-        print("Creating a group....")
+        print("Processing group....")
         pass
 
     def create(self, name, desc):
@@ -95,19 +98,28 @@ class Group:
         d = (name, desc)
         cursor.execute(add_group, d)
         cnx.commit()
+        # Make sure data is committed to the database and close conn
         close_connection()
         print("Group successfuly created")
+        return "created"
+
+    def delete(self, name=""):
+        open_connection()
+        query = ("DELETE FROM contact_group "
+                "WHERE name=%s; ")
+        cursor.execute(query, (name, ))
+        cnx.commit()
+        print("DELETED")
+        close_connection()
         pass
 
-    def delete(self, id):
-        pass
-
-    def update(self,id: int=0, name=""):
+    def update(self,id: int=0, name:str=""):
         open_connection()
         query = ("UPDATE contact_group "
                 "SET name=%s "
                 "WHERE groupID=%s ")
         cursor.execute(query, (name, id))
+        cnx.commit()
         print("Succesfully updated groudid", id)
         close_connection()
         pass
@@ -136,7 +148,6 @@ class Group:
 
 
 def close_connection():
-    cnx.commit()
     cursor.close()
     cnx.close()
     pass
